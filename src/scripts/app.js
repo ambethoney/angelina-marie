@@ -1,56 +1,62 @@
 m = require('mithril');
+$ = require('jquery-latest');
 
-//this application only has one module: todo
-var todo = {};
+mysite = {};
 
-//for simplicity, we use this module to namespace the model classes
+mysite.modules = {};
 
-//the Todo class has two properties
-todo.Todo = function(data) {
-    this.description = m.prop(data.description);
-    this.done = m.prop(false);
-};
+mysite.modules.Nav = {
 
-//the TodoList class is a list of Todo's
-todo.TodoList = Array;
+    controller: function(){
 
-//the controller uses three model-level entities, of which one is a custom defined class:
-//`Todo` is the central class in this application
-//`list` is merely a generic array, with standard array methods
-//`description` is a temporary storage box that holds a string
-//
-//the `add` method simply adds a new todo to the list
-todo.controller = function() {
-    this.list = new todo.TodoList();
-    this.description = m.prop("");
+        // function link(name, route){
+        // var isCurrent = (m.route() === route);
+        // var click = function(){ m.route(route); };
+        // return m("button"+(isCurrent ? ".success" : ""), {onclick: click}, name);
+        // }
+    },
 
-    this.add = function() {
-        if (this.description()) {
-            this.list.push(new todo.Todo({description: this.description()}));
-            this.description("");
-        }
-    }.bind(this);
-};
-
-//here's the view
-todo.view = function(ctrl) {
-    return m("html", [
-        m("body", [
-            m("input", {onchange: m.withAttr("value", ctrl.description), value: ctrl.description()}),
-            m("button", {onclick: ctrl.add}, "Add"),
-            m("table", [
-                ctrl.list.map(function(task, index) {
-                    return m("tr", [
-                        m("td", [
-                            m("input[type=checkbox]", {onclick: m.withAttr("checked", task.done), checked: task.done()})
-                        ]),
-                        m("td", {style: {textDecoration: task.done() ? "line-through" : "none"}}, task.description()),
-                    ])
-                })
+    view: function(ctrl){
+        return [
+            m("ul.navigation",[
+                m("li", m("a[href='/']", {config: m.route}, "Home",{
+                    class: "nav-link"})),
+                m("li", m("a[href='/about']", {config: m.route}, "About",{
+                    class: "nav-link"})),
+                m("li", m("a[href='/portfolio']", {config: m.route}, "Portfolio",{
+                    class: "nav-link"})),
+                m("li",  m("a[href='/contact']", {config: m.route}, "Contact",{
+                    class: "nav-link"})),
             ])
-        ])
-    ]);
+        ];
+    }
 };
 
-//initialize the application
-m.module(document, todo);
+mysite.modules.Page = function(content, placePlugin){
+    this.view = function(){
+        return [ mysite.modules.Nav.view(), m(".page", content ) ];
+    }
+}
+
+
+mysite.modules.Home = new mysite.modules.Page("Home");
+
+
+mysite.modules.About = new mysite.modules.Page("About");
+
+
+mysite.modules.Portfolio = new mysite.modules.Page("Portfolio");
+
+
+mysite.modules.Contact = new mysite.modules.Page("Contact");
+
+m.route.mode = "search";
+m.route(document.body, "/", {
+    "/": mysite.modules.Home,
+    "/about": mysite.modules.About,
+    "/portfolio": mysite.modules.Portfolio,
+    "/portfolio/:project": mysite.modules.Portfolio,
+    "/contact": mysite.modules.Contact
+});
+
+
