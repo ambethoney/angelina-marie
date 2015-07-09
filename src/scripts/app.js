@@ -1,54 +1,109 @@
 m = require('mithril');
-$ = require('jquery-latest');
 
 mysite = {};
 
+
 mysite.modules = {};
+
+mysite.anim = {};
+
+mysite.anim.rollIn = function(el, init, context){}
 
 mysite.modules.Nav = {
 
     controller: function(){
 
-        // function link(name, route){
-        // var isCurrent = (m.route() === route);
-        // var click = function(){ m.route(route); };
-        // return m("button"+(isCurrent ? ".success" : ""), {onclick: click}, name);
-        // }
+        function link(name, route){
+            var isCurrent = (m.route() === route);
+            var click = function(){ m.route(route); };
+            return m("button"+(isCurrent ? ".success" : ""), {onclick: click}, name);
+        }
+
+        function hideNav(){
+
+        }
     },
 
     view: function(ctrl){
         return [
-            m("ul.navigation",[
-                m("li", m("a[href='/']", {config: m.route}, "Home",{
-                    class: "nav-link"})),
-                m("li", m("a[href='/about']", {config: m.route}, "About",{
-                    class: "nav-link"})),
-                m("li", m("a[href='/portfolio']", {config: m.route}, "Portfolio",{
-                    class: "nav-link"})),
-                m("li",  m("a[href='/contact']", {config: m.route}, "Contact",{
-                    class: "nav-link"})),
+            m("nav",[
+                m("ul.navigation",[
+                    m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
+                    m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
+                    m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
+                    m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
+                ])
             ])
         ];
     }
 };
 
-mysite.modules.Page = function(content, placePlugin){
-    this.view = function(){
-        return [ mysite.modules.Nav.view(), m(".page", content ) ];
+mysite.modules.Page = function(subModule){
+    this.controller = function(){},
+    this.view = function(ctrl){
+        return [ mysite.modules.Nav.view(), m(".page",[subModule.view()] ) ];
     }
 }
 
 
-mysite.modules.Home = new mysite.modules.Page("Home");
+mysite.modules.Home = new mysite.modules.Page({
+    controller: function (){
+        // console.log("yooo"),
+         var me = this ;
+    },
+    view: function (ctrl){
+        // console.log(ctrl)
+        return[
+            m("div.container#home",[
+                m("div.title", "angelina marie"),
+                m("div.subtitle", "front end web developer")
+            ])
+        ]
+    }
+});
 
 
-mysite.modules.About = new mysite.modules.Page("About");
+mysite.modules.About = new mysite.modules.Page({
+    controller: function (){
+        // console.log("yooo"),
+         var me = this ;
+    },
+    view: function (ctrl){
+        // console.log(ctrl)
+        return[
+           m("div.container#about",[
+                m("div.bio-title", "i make cool shit"),
+                m("div.bio-subtitle", "and stuff!")
+            ])
+        ]
+    }
+});
 
+mysite.modules.Portfolio = new mysite.modules.Page({
+    controller: function (){
+        // console.log("yooo"),
+         var me = this ;
+    },
+    view: function (ctrl){
+        // console.log(ctrl)
+        return[
+            m("div", ['hello from portfolio view'])
+        ]
+    }
+});
 
-mysite.modules.Portfolio = new mysite.modules.Page("Portfolio");
-
-
-mysite.modules.Contact = new mysite.modules.Page("Contact");
+mysite.modules.Contact = new mysite.modules.Page({
+    controller: function (){
+        // console.log("yooo"),
+         var me = this ;
+    },
+    view: function (ctrl){
+        // console.log(ctrl)
+        return[
+            m("div", ['hello from contact view'])
+        ]
+    }
+});
 
 m.route.mode = "search";
 m.route(document.body, "/", {
