@@ -36,6 +36,7 @@
     "wiredep": "^1.8.2"
   },
   "dependencies": {
+    "jquery": "^2.1.4",
     "normalize.css": "^3.0.3",
     "velocity-animate": "^1.2.2"
   }
