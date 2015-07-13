@@ -9,7 +9,14 @@ mysite.modules = {};
 
 mysite.anim = {};
 
-mysite.anim.rollIn = function(el, init, context){}
+mysite.utils = {};
+
+mysite.anim.rollIn = function(el, init, context){
+
+    if(!init){
+        $(el).addClass('animated flipInX')
+    }
+}
 
 
 mysite.anim.easeNav = function(el, init, slide_up){
@@ -27,9 +34,11 @@ mysite.anim.easeNav = function(el, init, slide_up){
          // };
 
         $(el).on({
-            "mouseout" : function(){ $(el).animate({height: is_closed + "px"}, 500)},
-            "mouseover" : function(){ $(el).animate({height: is_open + "px"}, 500)}
+            "mouseleave" : function(){ $(el).animate({height: is_closed + "px"}, 500); $('.navigation').hide()},
+            "mouseenter" : function(){ $(el).animate({height: is_open + "px"}, 500); $('.navigation').show()}
         })
+
+        // if(px_nav_height < 69){$('.navigation').hide()}
      }
 }
 
@@ -54,6 +63,81 @@ mysite.anim.pageSlideIn = function(el, init, context) {
     }
 }
 
+mysite.utils.submitForm = function(el, init, context){
+
+    if(!init){
+
+        $('.error').hide();
+
+        var first_name = $("input#firstname").val(),
+            last_name = $("input#lastname").val(),
+            email = $("input#email").val(),
+            phone = $("input#phone").val(),
+            comments = $("input#comments").val();
+
+        $(el).click(function(e){
+             e.preventDefault();
+              var dataString = 'name='+ first_name + ' '+ last_name + '&email= ' + email + '&phone= ' + phone + '&comments= ' + comments,
+                  url = "https://docs.google.com/document/d/1E1OPzBRy2MLPzvQrnlAgzCX9OJqa1t0XrWGNGHl2O9Y/pub";
+
+
+            //  if (first_name == "") {
+            //     $("label#firstname_error").show();
+            //     $("input#firstname").focus();
+            //     return false;
+            // }
+
+
+            // if (last_name == "") {
+            //     $("label#lastname_error").show();
+            //     $("input#lastname").focus();
+            //     return false;
+            // }
+
+
+            // if (email == "") {
+            //     $("label#email_error").show();
+            //     $("input#email").focus();
+            //     return false;
+            // }
+
+
+            // if (phone == "") {
+            //     $("label#phone_error").show();
+            //     $("input#phone").focus();
+            //     return false;
+            // }
+
+
+            // if (comments == "") {
+            //     $("label#comments_error").show();
+            //     $("input#comments").focus();
+            //     return false;
+            // }
+
+            $.ajax({
+              type: "POST",
+              crossDomain: true,
+              url: url,
+              data: dataString,
+              dataType: 'jsonp',
+              // headers: {Access-Control-Allow-Origin: *},
+              success: function() {
+                $('#contact_form').html("<div id='message'></div>");
+                $('#message').html("<h2>Contact Form Submitted!</h2>")
+                .append("<p>We will be in touch soon.</p>")
+                .hide()
+                .fadeIn(1500, function() {
+                  $('#message').append("<img id='checkmark' src='../images/about-img.jpg' />");
+                });
+              }
+            });
+            return false;
+        })
+    }
+
+}
+
 
 mysite.modules.Nav = {
 
@@ -69,12 +153,12 @@ mysite.modules.Nav = {
     view: function(ctrl){
         return [
             m("nav",{config: mysite.anim.easeNav},[
-                m("ul.navigation",[
-                    m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
+                m("ul.navigation",
+                     m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
                     m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
                     m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
                     m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
-                ])
+                )
             ])
         ];
     }
@@ -90,15 +174,15 @@ mysite.modules.Page = function(subModule){
 
 mysite.modules.Home = new mysite.modules.Page({
     controller: function (){
-        // console.log("yooo"),
-         var me = this ;
+         console.log("yooo")
+         var ctrl = this ;
     },
     view: function (ctrl){
-        // console.log(ctrl)
+         console.log(ctrl)
         return[
             m("div.container#home",[
-                m("div.title", "angelina marie"),
-                m("div.subtitle", "front end web developer")
+                m("div.title",{config:mysite.anim.rollIn}, "angelina marie"),
+                m("div.subtitle", {config:mysite.anim.rollIn},"front end web developer")
             ])
         ]
     }
@@ -159,35 +243,61 @@ mysite.modules.Contact = new mysite.modules.Page({
            m("div.container#contact",[
                 m("div.page-title", "i'm hireable!"),
                 m("div.contact-sub", "i'm currently looking for full time work in NYC. have a project in mind? i love collaborating with inspiring people!"),
-                m("form[name='contact']",[
-                    m("input",{
-                        class:'input_one',
-                        placeholder: 'first name',
-                        value:""},
-                        "first name"),
-                    m("input", {
-                        class:'input_one',
-                        placeholder: 'last name',
-                        value:""},
-                        "last name"),
-                    m("input",{
-                        class:'input_one',
-                        placeholder: 'email',
-                        value:""}
-                        , "email"),
-                    m("input",{
-                        class:'input_one',
-                        placeholder: 'phone',
-                        value:""}
-                        , "phone"),
-                    m("input",{
-                        class:'input_two',
-                        placeholder: 'comments, suggestions, secrets',
-                        value:""}
-                        , "comments"),
-                    m("button[type='submit']", "submit"),
+                    m("div#contact_form",[
+                        m("form[name='contact']",[
+                            m("input",{
+                                class:'input_one',
+                                placeholder: 'first name',
+                                value:"",
+                                id: "firstname"},
+                                "first name"),
+                            m("label",{
+                                class:"error",
+                                for:"firstname",
+                                id:"firstname_error"},"how can we be friends if i don't know your first name?"),
+                            m("input", {
+                                class:'input_one',
+                                placeholder: 'last name',
+                                value:"",
+                                id: "lastname"},
+                                "last name"),
+                             m("label",{
+                                class:"error",
+                                for:"lastname",
+                                id:"lastname_error"},"i need your last name to stalk you on facebook!"),
+                            m("input",{
+                                class:'input_one',
+                                placeholder: 'email',
+                                value:"",
+                                id: "email"}
+                                , "email"),
+                            m("label",{
+                                class:"error",
+                                for:"email",
+                                id:"email_error"},"i promise not to send you (<i>too</i> much) spam@"),
+                            m("input",{
+                                class:'input_one',
+                                placeholder: 'phone',
+                                value:"",
+                                id: "phone"}
+                                , "phone"),
 
-                ])
+                            m("input",{
+                                class:'input_two',
+                                placeholder: 'comments, suggestions, secrets',
+                                value:"",
+                                id: "comments"}
+                                , "comments"),
+                            m("button[type='submit']",{
+                                class: "submit",
+                                value : "send",
+                                name : "submit",
+                                id: "submit",
+                                config: mysite.utils.submitForm
+                            }, "submit")
+
+                        ])
+                    ])
             ])
         ]
     }

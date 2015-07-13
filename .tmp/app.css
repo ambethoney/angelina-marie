@@ -381,6 +381,10 @@ button {
   padding: 5px;
   background-color: transparent;
 }
+button:hover {
+  background-color: rgba(202, 185, 168, 0.8);
+  color: #f3f0eb;
+}
 .clearfix {
   clear: both;
   height: 1px;
@@ -395,7 +399,7 @@ nav {
   z-index: 999;
   background-color: rgba(202, 185, 168, 0.8);
   position: fixed;
-  height: 70px;
+  height: 20px;
   width: 100%;
   top: 0;
   left: 0;
@@ -404,6 +408,7 @@ nav {
 }
 nav .navigation {
   text-align: center;
+  display: none;
 }
 nav .navigation li {
   margin: 10px 50px;
@@ -443,10 +448,18 @@ nav .navigation li a {
 #home .title {
   font-size: 50px;
   position: relative;
-  top: 350px;
+  top: 325px;
+  text-shadow: 2px 2px 4px #000000;
+  -webkit-animation-delay: 2s;
+  -mos-animation-delay: 2s;
 }
 #home .subtitle {
-  display: none;
+  font-size: 25px;
+  position: relative;
+  top: 350px;
+  text-shadow: 1px 1px 2px #000000;
+  -webkit-animation-delay: 3s;
+  -mos-animation-delay: 3s;
 }
 .page-title {
   font-size: 50px;
@@ -497,11 +510,13 @@ nav .navigation li a {
 #contact button {
   margin-top: 30px;
 }
-form[name=contact] {
+#contact_form {
   position: relative;
   top: 35%;
-  width: 500px;
+}
+form[name=contact] {
   margin: 0 auto;
+  width: 500px;
 }
 input {
   height: 25px;
