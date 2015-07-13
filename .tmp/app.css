@@ -385,6 +385,23 @@ button:hover {
   background-color: rgba(202, 185, 168, 0.8);
   color: #f3f0eb;
 }
+form[name=contact] {
+  margin: 0 auto;
+  width: 500px;
+}
+input {
+  height: 25px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.input_one {
+  width: 46%;
+  float: left;
+  margin: 0px 10px 10px;
+}
+.input_two {
+  width: 96%;
+}
 .clearfix {
   clear: both;
   height: 1px;
@@ -404,7 +421,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  font-family: ostrich_sansmedium;
+  font-family: sans-serif;
 }
 nav .navigation {
   text-align: center;
@@ -450,16 +467,16 @@ nav .navigation li a {
   position: relative;
   top: 325px;
   text-shadow: 2px 2px 4px #000000;
-  -webkit-animation-delay: 2s;
-  -mos-animation-delay: 2s;
+  -webkit-animation-delay: 1.5s;
+  -mos-animation-delay: 1.5s;
 }
 #home .subtitle {
   font-size: 25px;
   position: relative;
   top: 350px;
   text-shadow: 1px 1px 2px #000000;
-  -webkit-animation-delay: 3s;
-  -mos-animation-delay: 3s;
+  -webkit-animation-delay: 2.5s;
+  -mos-animation-delay: 2.5s;
 }
 .page-title {
   font-size: 50px;
@@ -474,7 +491,7 @@ nav .navigation li a {
 #about .about-img {
   border-radius: 100%;
   border: 5px solid #cab9a8;
-  height: 45%;
+  height: 50%;
   width: 25%;
   top: 150px;
   position: relative;
@@ -498,6 +515,21 @@ nav .navigation li a {
 #portfolio {
   background-color: #f3f0eb;
   text-align: center;
+  overflow: scroll;
+}
+#portfolio .portfolio-sub {
+  top: 25%;
+  position: relative;
+}
+#portfolio .portfolio-table {
+  position: relative;
+  margin: 0 auto;
+  top: 35%;
+}
+#portfolio td img {
+  margin: 10px;
+  -webkit-animation-delay: 2s;
+  -mos-animation-delay: 2s;
 }
 #contact {
   background-color: #f3f0eb;
@@ -510,24 +542,18 @@ nav .navigation li a {
 #contact button {
   margin-top: 30px;
 }
-#contact_form {
+#contact #icons {
+  top: 33%;
   position: relative;
-  top: 35%;
 }
-form[name=contact] {
-  margin: 0 auto;
-  width: 500px;
+#contact #icons i {
+  margin: 0 25px;
+  font-size: 30px;
 }
-input {
-  height: 25px;
-  padding: 5px;
-  border-radius: 5px;
+#contact #icons i a {
+  color: lightseagreen;
 }
-.input_one {
-  width: 46%;
-  float: left;
-  margin: 0px 10px 10px;
-}
-.input_two {
-  width: 96%;
+#contact #contact_form {
+  position: relative;
+  top: 40%;
 }

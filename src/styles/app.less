@@ -467,6 +467,26 @@ button:hover{
   background-color: rgba(202, 185, 168, 0.8);
   color:@light;
 }
+form[name=contact]{
+  margin: 0 auto;
+  width: 500px;
+}
+input{
+  height: 25px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.input_one{
+  width: 46%;
+  float: left;
+  // margin-bottom: 10px;
+  margin: 0px 10px 10px;
+}
+
+.input_two{
+  width: 96%;
+}
+
 .clearfix{
   clear: both;
   height: 1px;
@@ -489,7 +509,7 @@ nav{
   left:0;
   right: 0;
 
-  font-family: ostrich_sansmedium;
+  font-family: sans-serif;
   .navigation{
     text-align: center;
     display: none;
@@ -520,7 +540,6 @@ nav{
   width: 100%;
   left:0;
   border: 1px solid black;
-
 }
 #home{
   background: url('../img/bg-home.jpg') no-repeat left top;
@@ -536,16 +555,16 @@ nav{
     position: relative;
     top: 325px;
     text-shadow: 2px 2px 4px #000000;
-    -webkit-animation-delay: 2s;
-    -mos-animation-delay: 2s;
+    -webkit-animation-delay: 1.5s;
+    -mos-animation-delay: 1.5s;
   }
   .subtitle{
     font-size: 25px;
     position: relative;
     top: 350px;
     text-shadow: 1px 1px 2px #000000;
-    -webkit-animation-delay: 3s;
-    -mos-animation-delay: 3s;
+    -webkit-animation-delay: 2.5s;
+    -mos-animation-delay: 2.5s;
   }
 }
 .page-title{
@@ -562,7 +581,7 @@ nav{
   .about-img{
     border-radius: 100%;
     border:5px solid #cab9a8;
-    height: 45%;
+    height: 50%;
     width: 25%;
     top:150px;
     position: relative;
@@ -587,6 +606,21 @@ nav{
 #portfolio{
   background-color: @light;
   text-align: center;
+  overflow: scroll;
+  .portfolio-sub{
+    top:25%;
+    position: relative;
+  }
+  .portfolio-table{
+    position: relative;
+    margin: 0 auto;
+    top:35%;
+  }
+  td img{
+    margin:10px;
+    -webkit-animation-delay: 2s;
+    -mos-animation-delay: 2s;
+  }
 }
 
 #contact{
@@ -599,28 +633,21 @@ nav{
   button{
     margin-top:30px;
   }
+  #icons{
+    top:33%;
+    position: relative;
+    i{
+      margin: 0 25px;
+      font-size: 30px;
+      a{
+      color:lightseagreen;
+
+      }
+    }
+  }
+  #contact_form{
+    position: relative;
+    top:40%;
+  }
 }
 
-#contact_form{
-  position: relative;
-  top:35%;
-}
-form[name=contact]{
-  margin: 0 auto;
-  width: 500px;
-}
-input{
-  height: 25px;
-  padding: 5px;
-  border-radius: 5px;
-}
-.input_one{
-  width: 46%;
-  float: left;
-  // margin-bottom: 10px;
-  margin: 0px 10px 10px;
-}
-
-.input_two{
-  width: 96%;
-}

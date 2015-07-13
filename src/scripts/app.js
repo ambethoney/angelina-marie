@@ -178,7 +178,7 @@ mysite.modules.Home = new mysite.modules.Page({
          var ctrl = this ;
     },
     view: function (ctrl){
-         console.log(ctrl)
+
         return[
             m("div.container#home",[
                 m("div.title",{config:mysite.anim.rollIn}, "angelina marie"),
@@ -199,37 +199,48 @@ mysite.modules.About = new mysite.modules.Page({
         return[
            m("div.container#about",[
                 m("div.page-title", "welcome! "),
-                m("div.left.bio", m.trust("<p>Hi, I'm Angelina. I've found myself in the Big City by way of Boston, Providence, and Charleston, SC. I build random websites to play around with new or interesting technologies, and <a href='/portfolio'>make others' dreams come true</a>. When I'm not staring at the computer, I like to <del> read</del> cut up magazines and make funky art. I guess I like to hike and eat ice cream, too.</p>")),
+                m("div.left.bio", m.trust("<p>Hi, I'm Angelina. I've found myself in the Big Apple by way of Boston, Providence, and Charleston, SC. I take a lot of pride in building websites that <del> no one but me and my mom uses</del> promotes businesses, entertains, or lets me play with new technologies.</p>")),
                 m("img[src='../img/about-img.jpg']",{class: "about-img"}),
-                m("div.right.skills", m.trust("<p>some more stuff here</p>"))
+                m("div.right.skills", m.trust("<p>What, you want to know more? When I finally pull away from my computer, I love arts & crafts of all varieties, lounging on the beach, and asking people what their new favorite library is at tech meetups across NYC.</p>"))
             ])
         ]
     }
 });
 
 mysite.modules.Portfolio = new mysite.modules.Page({
+
     controller: function (){
-        var chain = {};
-        chain.seven = function(subject) {
+
+        two = function(subject) {
             var output = [];
-            for (var i = 0; i < 7; i++) output.push(subject(i));
+            for (var i = 0; i < 2; i++) output.push(subject(i));
+            return output;
+        };
+
+
+        four = function(subject) {
+            var output = [];
+            for (var i = 0; i < 4; i++) output.push(subject(i));
             return output;
         };
     },
 
-    view: function (ctrl){
-         console.log(ctrl)
+
+    view: function (controller){
+
          return[
            m("div.container#portfolio",[
-                m("div.page-title", "portfolio "),
-                 // m("table", chain.seven(function(){
-                 //    return m("tr", chain.seven(function(){
-                 //      return m("td", "hello")
-                 //    }))
-                 // }))
+                m("div.page-title", "portfolio"),
+                m("div.portfolio-sub", m.trust("I'm still working on this page! In the mean time, bask in the cuteness of the kittehs and check out my <a href='http://www.github.com/ambethoney'> github!</a>")),
+                 m("table.portfolio-table", two(function(){
+                    return m("tr", four(function(){
+                      return m("td",{config:mysite.anim.rollIn}, [m("img[src='http://placekitten.com/g/200/300']")])
+                    }))
+                 }))
             ])
         ]
     }
+
 });
 
 mysite.modules.Contact = new mysite.modules.Page({
@@ -241,63 +252,70 @@ mysite.modules.Contact = new mysite.modules.Page({
         // console.log(ctrl)
          return[
            m("div.container#contact",[
-                m("div.page-title", "i'm hireable!"),
-                m("div.contact-sub", "i'm currently looking for full time work in NYC. have a project in mind? i love collaborating with inspiring people!"),
-                    m("div#contact_form",[
-                        m("form[name='contact']",[
-                            m("input",{
-                                class:'input_one',
-                                placeholder: 'first name',
-                                value:"",
-                                id: "firstname"},
-                                "first name"),
-                            m("label",{
-                                class:"error",
-                                for:"firstname",
-                                id:"firstname_error"},"how can we be friends if i don't know your first name?"),
-                            m("input", {
-                                class:'input_one',
-                                placeholder: 'last name',
-                                value:"",
-                                id: "lastname"},
-                                "last name"),
-                             m("label",{
-                                class:"error",
-                                for:"lastname",
-                                id:"lastname_error"},"i need your last name to stalk you on facebook!"),
-                            m("input",{
-                                class:'input_one',
-                                placeholder: 'email',
-                                value:"",
-                                id: "email"}
-                                , "email"),
-                            m("label",{
-                                class:"error",
-                                for:"email",
-                                id:"email_error"},"i promise not to send you (<i>too</i> much) spam@"),
-                            m("input",{
-                                class:'input_one',
-                                placeholder: 'phone',
-                                value:"",
-                                id: "phone"}
-                                , "phone"),
+                m("div.page-title", "I'm hireable!"),
+                m("div.contact-sub", "I'm currently looking for full time work in NYC. Have a project in mind? I love collaborating with inspiring people!"),
+                m("div#icons",[
+                    m('i', m('a',{class:'icon-mail', href:'mailto:hello@angelina-marie.com'})),
+                    m('i', m('a',{class:'icon-git_circle', href:'https://www.github.com/ambethoney', target:'_blank'})),
+                    m('i', m('a',{class:'icon-twitter_circle', href:'https://www.twitter.com/oxangiemarie', target:'_blank'})),
+                    m('i', m('a',{class:'icon-linked_in_circle', href:'https://www.linkedin.com/in/ambethoney', target:'_blank'}))
+                ])
+                // m("div#contact_form",[
+                //     m("form[name='contact']",[
+                //         m("input",{
+                //             class:'input_one',
+                //             placeholder: 'first name',
+                //             value:"",
+                //             id: "firstname"},
+                //             "first name"),
+                //         m("label",{
+                //             class:"error",
+                //             for:"firstname",
+                //             id:"firstname_error"},"how can we be friends if i don't know your first name?"),
+                //         m("input", {
+                //             class:'input_one',
+                //             placeholder: 'last name',
+                //             value:"",
+                //             id: "lastname"},
+                //             "last name"),
+                //          m("label",{
+                //             class:"error",
+                //             for:"lastname",
+                //             id:"lastname_error"},"i need your last name to stalk you on facebook!"),
+                //         m("input",{
+                //             class:'input_one',
+                //             placeholder: 'email',
+                //             value:"",
+                //             id: "email"}
+                //             , "email"),
+                //         m("label",{
+                //             class:"error",
+                //             for:"email",
+                //             id:"email_error"},"i promise not to send you (<i>too</i> much) spam@"),
+                //         m("input",{
+                //             class:'input_one',
+                //             placeholder: 'phone',
+                //             value:"",
+                //             id: "phone"}
+                //             , "phone"),
 
-                            m("input",{
-                                class:'input_two',
-                                placeholder: 'comments, suggestions, secrets',
-                                value:"",
-                                id: "comments"}
-                                , "comments"),
-                            m("button[type='submit']",{
-                                class: "submit",
-                                value : "send",
-                                name : "submit",
-                                id: "submit",
-                                config: mysite.utils.submitForm
-                            }, "submit")
+                //         m("input",{
+                //             class:'input_two',
+                //             placeholder: 'comments, suggestions, secrets',
+                //             value:"",
+                //             id: "comments"}
+                //             , "comments"),
+                //         m("button[type='submit']",{
+                //             class: "submit",
+                //             value : "send",
+                //             name : "submit",
+                //             id: "submit",
+                //             config: mysite.utils.submitForm
+                //         }, "submit")
 
-                        ])
-                    ])
+                //     ])
+                // ])
+
             ])
         ]
     }
