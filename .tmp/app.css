@@ -416,7 +416,7 @@ nav {
   z-index: 999;
   background-color: rgba(202, 185, 168, 0.8);
   position: fixed;
-  height: 20px;
+  height: 70px;
   width: 100%;
   top: 0;
   left: 0;
@@ -556,4 +556,42 @@ nav .navigation li a {
 #contact #contact_form {
   position: relative;
   top: 40%;
+}
+@media screen and (max-width: 1050px) {
+  #about .about-img {
+    height: 40%;
+  }
+  #about .skills,
+  #about .bio {
+    width: 240px;
+  }
+}
+@media screen and (max-width: 775px) {
+  #about {
+    overflow: scroll;
+  }
+  #about .about-img {
+    width: 35%;
+  }
+  #about .skills,
+  #about .bio {
+    margin: 0 auto;
+    float: none;
+    width: 80%;
+  }
+  #about .bio {
+    top: 20%;
+  }
+  #about .skills {
+    top: 20%;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 550px) {
+  #about {
+    overflow: scroll;
+  }
+  #about .about-img {
+    width: 45%;
+  }
 }

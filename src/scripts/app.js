@@ -2,8 +2,10 @@ m = require('mithril');
 v = require('velocity-animate');
 $ = require('jquery');
 
+
 mysite = {};
 
+var url =   "../cockpit/rest/api/collections/get/"+ page +"?token=5e33744e5a42d77878db9c30 ";
 
 mysite.modules = {};
 
@@ -38,7 +40,10 @@ mysite.anim.easeNav = function(el, init, slide_up){
             "mouseenter" : function(){ $(el).animate({height: is_open + "px"}, 500); $('.navigation').show()}
         })
 
-        // if(px_nav_height < 69){$('.navigation').hide()}
+        if(m.route() ==='/'){
+            $('nav').height(is_open);
+            $('.navigation').show();
+        }
      }
 }
 
@@ -80,41 +85,6 @@ mysite.utils.submitForm = function(el, init, context){
               var dataString = 'name='+ first_name + ' '+ last_name + '&email= ' + email + '&phone= ' + phone + '&comments= ' + comments,
                   url = "https://docs.google.com/document/d/1E1OPzBRy2MLPzvQrnlAgzCX9OJqa1t0XrWGNGHl2O9Y/pub";
 
-
-            //  if (first_name == "") {
-            //     $("label#firstname_error").show();
-            //     $("input#firstname").focus();
-            //     return false;
-            // }
-
-
-            // if (last_name == "") {
-            //     $("label#lastname_error").show();
-            //     $("input#lastname").focus();
-            //     return false;
-            // }
-
-
-            // if (email == "") {
-            //     $("label#email_error").show();
-            //     $("input#email").focus();
-            //     return false;
-            // }
-
-
-            // if (phone == "") {
-            //     $("label#phone_error").show();
-            //     $("input#phone").focus();
-            //     return false;
-            // }
-
-
-            // if (comments == "") {
-            //     $("label#comments_error").show();
-            //     $("input#comments").focus();
-            //     return false;
-            // }
-
             $.ajax({
               type: "POST",
               crossDomain: true,
@@ -128,7 +98,7 @@ mysite.utils.submitForm = function(el, init, context){
                 .append("<p>We will be in touch soon.</p>")
                 .hide()
                 .fadeIn(1500, function() {
-                  $('#message').append("<img id='checkmark' src='../images/about-img.jpg' />");
+                  $('#message').append("<img id='checkmark'  />");
                 });
               }
             });
@@ -243,6 +213,48 @@ mysite.modules.Portfolio = new mysite.modules.Page({
 
 });
 
+mysite.modules.Blog = new mysite.modules.Page({
+
+    controller: function (){
+
+        two = function(subject) {
+            var output = [];
+            for (var i = 0; i < 2; i++) output.push(subject(i));
+            return output;
+        };
+
+
+        four = function(subject) {
+            var output = [];
+            for (var i = 0; i < 4; i++) output.push(subject(i));
+            return output;
+        };
+    },
+
+
+    view: function (controller){
+
+         return[
+           m("div.container#portfolio",[
+                m("div.page-title", "portfolio"),
+                m("div.portfolio-sub", m.trust("I'm still working on this page! In the mean time, bask in the cuteness of the kittehs and check out my <a href='http://www.github.com/ambethoney'> github!</a>")),
+                 m("table.portfolio-table", two(function(){
+                    return m("tr", four(function(){
+                      return m("td",{config:mysite.anim.rollIn}, [m("img[src='http://placekitten.com/g/200/300']")])
+                    }))
+                 }))
+            ])
+        ]
+    }
+
+});
+
+
+
+
+
+
+
 mysite.modules.Contact = new mysite.modules.Page({
     controller: function (){
         // console.log("yooo"),
@@ -327,6 +339,8 @@ m.route(document.body, "/", {
     "/about": mysite.modules.About,
     "/portfolio": mysite.modules.Portfolio,
     "/portfolio/:project": mysite.modules.Portfolio,
+    "/blog": mysite.modules.Blog,
+    "/blog/:post": mysite.modules.Blog,
     "/contact": mysite.modules.Contact
 });
 
