@@ -452,49 +452,66 @@ nav .navigation li a {
   width: 100%;
   left: 0;
   border: 1px solid black;
-}
-#home {
-  background: url('../img/bg-home.jpg') no-repeat left top;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
+  background-color: #FFFF00;
   text-align: center;
-  z-index: -1;
-  color: #f3f0eb;
+}
+#home #hello {
+  background-color: #fff;
+  position: relative;
+  top: 20%;
 }
 #home .title {
-  font-size: 50px;
+  color: #263031;
+  font-size: 40px;
   position: relative;
-  top: 325px;
-  text-shadow: 2px 2px 4px #000000;
-  -webkit-animation-delay: 1.5s;
-  -mos-animation-delay: 1.5s;
+  bottom: 10%;
+  color: black;
+  -webkit-animation-delay: 7.5s;
+  -mos-animation-delay: 7.5s;
+}
+#home .about-img {
+  border-radius: 100%;
+  border: 5px solid #99CC99;
+  height: 170px;
+  width: 165px;
+  bottom: 40px;
+  position: relative;
+  -webkit-animation-delay: 7.5s;
+  -mos-animation-delay: 7.5s;
 }
 #home .subtitle {
-  font-size: 25px;
+  color: #263031;
+  font-size: 20px;
   position: relative;
-  top: 350px;
-  text-shadow: 1px 1px 2px #000000;
-  -webkit-animation-delay: 2.5s;
-  -mos-animation-delay: 2.5s;
+  letter-spacing: 0.8px;
+  -webkit-animation-delay: 8.2s;
+  -mos-animation-delay: 8.2s;
+}
+#home .home-nav {
+  position: relative;
+  top: 5%;
+  font-size: 18px;
+}
+#home .home-nav ul {
+  -webkit-animation-delay: 8.2s;
+  -mos-animation-delay: 8.2s;
+}
+#home .home-nav ul li {
+  margin-bottom: 15px;
+  letter-spacing: 0.8px;
+}
+#home .home-nav ul li a {
+  color: #263031;
+}
+#home .home-nav ul li i {
+  margin: 0 5px;
+  font-size: 10px;
 }
 .page-title {
   font-size: 50px;
   position: relative;
   color: #51554f;
   top: 15%;
-}
-#about {
-  background-color: #f3f0eb;
-  text-align: center;
-}
-#about .about-img {
-  border-radius: 100%;
-  border: 5px solid #cab9a8;
-  height: 50%;
-  width: 25%;
-  top: 150px;
-  position: relative;
 }
 #about .bio,
 #about .skills {
@@ -513,8 +530,6 @@ nav .navigation li a {
   margin-left: 0;
 }
 #portfolio {
-  background-color: #f3f0eb;
-  text-align: center;
   overflow: scroll;
 }
 #portfolio .portfolio-sub {
@@ -526,14 +541,28 @@ nav .navigation li a {
   margin: 0 auto;
   top: 35%;
 }
-#portfolio td img {
-  margin: 10px;
+#portfolio .portfolio-img {
   -webkit-animation-delay: 2s;
   -mos-animation-delay: 2s;
+  height: 250px;
+  width: 300px;
+  z-index: -1px;
 }
-#contact {
-  background-color: #f3f0eb;
-  text-align: center;
+#portfolio td:hover .portfolio-layer {
+  opacity: 1;
+}
+#portfolio .portfolio-layer {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  height: 250px;
+  left: 0;
+  bottom: 255px;
+  width: 300px;
+  opacity: 0;
+  padding: 100px 0;
 }
 #contact .contact-sub {
   top: 25%;
