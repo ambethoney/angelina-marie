@@ -410,7 +410,7 @@ optgroup {
    ========================================================================== */
 
 /**
- * Remove most spacing between table cells.
+ * Remove mozt spacing between table cells.
  */
 
 table {
@@ -424,9 +424,9 @@ th {
 }
 
 
-@headers: #51554f;
-@light: #f3f0eb;
+
 @dark: #263031;
+@main: #99CC99;
 
 
 
@@ -464,8 +464,8 @@ button{
   background-color: transparent;
 }
 button:hover{
-  background-color: rgba(202, 185, 168, 0.8);
-  color:@light;
+  background-color: @main;
+  color:#FFFF00;
 }
 form[name=contact]{
   margin: 0 auto;
@@ -501,24 +501,39 @@ input{
 
 nav{
   z-index: 999;
-  background-color: rgba(202, 185, 168, 0.8);
   position: fixed;
   height: 70px;
   width: 100%;
   top:0;
   left:0;
   right: 0;
-
   font-family: sans-serif;
+  text-align: right;
+  span{
+    top: 15px;
+    position: relative;
+    margin-left: 45px;
+    font-family: cursive;
+    font-size: 25px;
+    a{
+      color: @main;
+    }
+  }
   .navigation{
-    text-align: center;
-    display: none;
+    display: inline-block;
     li{
       margin: 10px 50px;
       display: inline-block;
       a{
-        color:@light;
+        color:@main;
+        padding-bottom: 5px;
       }
+      a:hover{
+        border-bottom: 3px solid gold;
+      }
+    }
+    li:last-child{
+      margin-right: 100px;
     }
   }
 }
@@ -540,14 +555,15 @@ nav{
   width: 100%;
   left:0;
   border: 1px solid black;
-  background-color: #FFFF00;
+  background-color: #FFF;
   text-align: center;
 }
+
 #home{
   #hello {
-    background-color: #fff;
+    background-color: #FFF;
     position: relative;
-    top:20%;
+    top:0px;
   }
   .title{
     color:@dark;
@@ -556,17 +572,21 @@ nav{
     bottom:10%;
     color:black;
     -webkit-animation-delay: 7.5s;
-    -mos-animation-delay: 7.5s;
+    -moz-animation-delay: 7.5s;
+    -o-animation-delay: 7.5s;
+    -ms-animation-delay: 7.5s;
   }
    .about-img{
     border-radius: 100%;
-    border:5px solid #99CC99;
+    border:5px solid @main;
     height: 170px;
     width: 165px;
     bottom:40px;
     position: relative;
     -webkit-animation-delay: 7.5s;
-    -mos-animation-delay: 7.5s;
+    -moz-animation-delay: 7.5s;
+    -o-animation-delay: 7.5s;
+    -ms-animation-delay: 7.5s;
   }
   .subtitle{
     color:@dark;
@@ -575,7 +595,9 @@ nav{
     letter-spacing: 0.8px;
     // top:20%;
     -webkit-animation-delay: 8.2s;
-    -mos-animation-delay: 8.2s;
+    -moz-animation-delay: 8.2s;
+    -o-animation-delay: 8.2s;
+    -ms-animation-delay: 8.2s;
   }
   .home-nav{
     position: relative;
@@ -583,7 +605,9 @@ nav{
     font-size: 18px;
     ul{
       -webkit-animation-delay: 8.2s;
-      -mos-animation-delay: 8.2s;
+      -moz-animation-delay: 8.2s;
+      -o-animation-delay: 8.2s;
+      -ms-animation-delay: 8.2s;
       li{
         margin-bottom: 15px;
         letter-spacing: 0.8px;
@@ -600,9 +624,9 @@ nav{
 }
 .page-title{
   // display: none;
-  font-size:50px;
+  font-size:35px;
   position: relative;
-  color: @headers;
+  color: @dark;
   top:15%;
 }
 
@@ -626,53 +650,71 @@ nav{
 
 #portfolio{
   overflow: scroll;
+  .icon2x{
+    z-index: 100;
+    color:@main;
+    position: relative;
+    top:45%;
+    margin: 0 25px;
+  }
+  .icon2x:hover{
+    color:@dark;
+  }
   .portfolio-sub{
     top:25%;
     position: relative;
   }
-  .portfolio-table{
+  #portfolio-showcase{
     position: relative;
-    margin: 0 auto;
-    top:35%;
-  }
+    top:150px;
+    height: 500px;
+
   .portfolio-img{
-    // margin:10px 15px;
-    -webkit-animation-delay: 2s;
-    -mos-animation-delay: 2s;
-    height: 250px;
-    width: 300px;
-    z-index:-1px;
+    height: 200px;
+    width: 200px;
   }
-   td:hover{
-    .portfolio-layer{
-      opacity: 1;
+
+    #slideshow ul{
+      height:320px;
+      left:10px;
+      list-style:none outside none;
+      overflow:hidden;
+      position:absolute;
+      top:10px;
+      width:620px;
     }
-  }
-  .portfolio-layer {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    height: 250px;
-    left: 0;
-    bottom: 255px;
-    width: 300px;
-    opacity: 0;
-    padding:100px 0;
+
+    #slideshow li{
+      position:absolute;
+      display:none;
+      z-index:10;
+      height:200px;
+      width: 200px;
+    }
+
+    #slideshow li:first-child{
+      display:block;
+      z-index:1000;
+    }
+
+    .slideActive{
+        z-index:-2;
+        height: 200px;
+        width: 200px;
+    }
   }
 }
 
 #contact{
   .contact-sub{
-    top:25%;
+    top:40%;
     position: relative;
   }
   button{
     margin-top:30px;
   }
   #icons{
-    top:33%;
+    top:50%;
     position: relative;
     i{
       margin: 0 25px;

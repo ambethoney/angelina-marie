@@ -1,9 +1,6 @@
 var m = require('mithril'),
 $ = require('jquery');
 
-require('../../node_modules/masonry-layout/masonry.js');
-// console.dir(require('../../node_modules/masonry-layout/masonry.js'))
-
 mysite = {};
 
 var url = "../cockpit/rest/api/collections/get/"+ page +"?token=5e33744e5a42d77878db9c30 ",
@@ -18,11 +15,8 @@ mysite.anim = {};
 mysite.utils = {};
 
 
-mysite.utils.grid = function(el, init, context){
-    if(!init){
-        $(el).masonry()
-    }
-}
+
+
 
 mysite.anim.rollIn = function(el, init, context){
 
@@ -31,32 +25,6 @@ mysite.anim.rollIn = function(el, init, context){
     }
 }
 
-
-mysite.anim.easeNav = function(el, init, slide_up){
-    var px_nav_height = $('nav').height(),
-        is_open =  70,
-        is_closed = 20,
-        is_sliding = ! is_open && ! is_closed;
-
-     if(!init){
-
-         // if(slide_up){
-         //    $(el).animate({height: is_closed + "px"}, 500)
-
-
-         // };
-
-        $(el).on({
-            "mouseleave" : function(){ $(el).animate({height: is_closed + "px"}, 500); $('.navigation').hide()},
-            "mouseenter" : function(){ $(el).animate({height: is_open + "px"}, 500); $('.navigation').show()}
-        })
-
-        if(m.route() ==='/'){
-            $('nav').hide();
-            // $('.navigation').show();
-        }
-     }
-}
 
 mysite.anim.pageSlideIn = function(el, init, context) {
 
@@ -89,7 +57,7 @@ mysite.anim.greeting = function(el, init, context){
     if(ctx != null){
 
 
-        ctx.font = "150px cursive, TSCu_Comic, sans-serif";
+        ctx.font = "140px cursive, TSCu_Comic, sans-serif";
         ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
         ctx.strokeStyle = ctx.fillStyle = "#99CC99";
         ctx.textBaseline = "middle";
@@ -111,10 +79,99 @@ mysite.anim.greeting = function(el, init, context){
           }
         })();
     }
-
-
-
 }
+
+
+mysite.anim.portfolio = function(el, init, context){
+    var canvas = document.getElementById("portfolio-showcase"),
+        ctx = canvas.getContext("2d");
+
+    if(ctx != null){
+
+        // desktop
+        ctx.beginPath();
+        ctx.rect(10, 10, 150, 105);
+        ctx.fillStyle = 'transparent';
+        ctx.fill();
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        // power button
+        ctx.beginPath();
+        ctx.arc(85,115,.5, 0 ,2*Math.PI);
+        ctx.strokeStyle = 'white';
+        ctx.stroke();
+
+        // base
+        ctx.beginPath();
+        ctx.rect(10, 200, 15, 15);
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'yellow';
+        ctx.stroke();
+
+        //slideshow
+        $(function(){
+
+            var slides = $('#slideshow li img'),
+            slideWidth = window.width;
+            current = 0,
+            images = [];
+
+            $.each(slides, function( val, i ) {
+                var data = i,
+                    oImg = new Image();
+                    oImg.src = this.src;
+                    images.push(oImg);
+                    // console.log(oImg)
+                });
+
+                ctx.drawImage(images[current], 0, 0);
+
+                function moveLeft() {
+                    console.log(current);
+                    current++;
+                    console.log(current)
+                    if(current == $(images).length){
+                        current = 0;
+                    }
+                };
+
+                 $('.icon-chevron_left').click(function () {
+                    console.log(images[current])
+                    moveLeft();
+                });
+
+
+
+        })
+    }
+}
+
+
+
+
+
+
+
+
+mysite.utils.grid = function(el, init, context){
+    if(!init){
+        $(el).masonry()
+    }
+}
+mysite.utils.hideNav = function(el, init, context){
+    if(!init){
+        if(m.route() ==='/'){
+            $('nav').hide();
+            // $('.navigation').show();
+        }
+    }
+}
+
+
 mysite.utils.submitForm = function(el, init, context){
 
     if(!init){
@@ -156,6 +213,11 @@ mysite.utils.submitForm = function(el, init, context){
 }
 
 
+
+
+
+
+
 mysite.modules.Nav = {
 
     controller: function(){
@@ -165,13 +227,14 @@ mysite.modules.Nav = {
             var click = function(){ m.route(route); };
             return m("button"+(isCurrent ? ".success" : ""), {onclick: click}, name);
         }
+
     },
 
     view: function(ctrl){
         return [
-            m("nav",{config: mysite.anim.easeNav},[
+            m("nav",{config: mysite.utils.hideNav},[
+                m("span.left",m("a[href='/']", {config: m.route, class: "nav-link"}, "angelina marie")),
                 m("ul.navigation",
-                     m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
                     m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
                     m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
                     m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
@@ -207,7 +270,7 @@ mysite.subModules.Home = {
             m("div.container#home",[
                 m("canvas#hello",{
                     "width":"1200px",
-                    "height":"300px",
+                    "height":"250px",
                     config:mysite.anim.greeting
                 }, "oh, hello!"),
                 m("div.title",{config:mysite.anim.rollIn}, "I'm Angelina"),
@@ -266,18 +329,23 @@ mysite.subModules.Portfolio ={
 
     view : function (ctrl){
          return[
-           m("div.container#portfolio",[
-                m("div.page-title", "portfolio"),
-                m("div.portfolio-sub"),
-                m("table.portfolio-table",
-                    m("tr",
+            m("div.container#portfolio",[
+                m("div.page-title", "Here's what I've been making"),
+                m('i',{class:'icon-chevron_left left icon2x arrow'}),
+                m('i',{class:'icon-chevron_right right icon2x arrow'}),
+                m("canvas#portfolio-showcase",{config:mysite.anim.portfolio},"my portfolio!",
+                    m("ul#slideshow",
+
                         $.map(ctrl.projects(), function( val, i ) {
-                            return m("td",{config:mysite.anim.pageSlideIn},
-                                    m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img" }),
-                                    m("span.portfolio-layer",m("span", val.title)))
+                            return m("li",
+                                    m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img" })
+
+                            )
                         })
                     )
                 )
+
+
             ])
         ]
     }
@@ -332,7 +400,7 @@ mysite.subModules.Contact = {
 
          return[
            m("div.container#contact",[
-                m("div.page-title", "I'm hireable!"),
+                // m("div.page-title", "I'm hireable!"),
                 m("div.contact-sub", "I'm currently looking for full time work in NYC. Have a project in mind? I love collaborating with inspiring people!"),
                 m("div#icons",[
                     m('i', m('a',{class:'icon-mail', href:'mailto:hello@angelina-marie.com'})),

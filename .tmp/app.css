@@ -343,7 +343,7 @@ optgroup {
 /* Tables
    ========================================================================== */
 /**
- * Remove most spacing between table cells.
+ * Remove mozt spacing between table cells.
  */
 table {
   border-collapse: collapse;
@@ -382,8 +382,8 @@ button {
   background-color: transparent;
 }
 button:hover {
-  background-color: rgba(202, 185, 168, 0.8);
-  color: #f3f0eb;
+  background-color: #99cc99;
+  color: #FFFF00;
 }
 form[name=contact] {
   margin: 0 auto;
@@ -414,7 +414,6 @@ input {
 }
 nav {
   z-index: 999;
-  background-color: rgba(202, 185, 168, 0.8);
   position: fixed;
   height: 70px;
   width: 100%;
@@ -422,17 +421,34 @@ nav {
   left: 0;
   right: 0;
   font-family: sans-serif;
+  text-align: right;
+}
+nav span {
+  top: 15px;
+  position: relative;
+  margin-left: 45px;
+  font-family: cursive;
+  font-size: 25px;
+}
+nav span a {
+  color: #99cc99;
 }
 nav .navigation {
-  text-align: center;
-  display: none;
+  display: inline-block;
 }
 nav .navigation li {
   margin: 10px 50px;
   display: inline-block;
 }
 nav .navigation li a {
-  color: #f3f0eb;
+  color: #99cc99;
+  padding-bottom: 5px;
+}
+nav .navigation li a:hover {
+  border-bottom: 3px solid gold;
+}
+nav .navigation li:last-child {
+  margin-right: 100px;
 }
 .success {
   color: gold;
@@ -452,13 +468,13 @@ nav .navigation li a {
   width: 100%;
   left: 0;
   border: 1px solid black;
-  background-color: #FFFF00;
+  background-color: #FFF;
   text-align: center;
 }
 #home #hello {
-  background-color: #fff;
+  background-color: #FFF;
   position: relative;
-  top: 20%;
+  top: 0px;
 }
 #home .title {
   color: #263031;
@@ -467,17 +483,21 @@ nav .navigation li a {
   bottom: 10%;
   color: black;
   -webkit-animation-delay: 7.5s;
-  -mos-animation-delay: 7.5s;
+  -moz-animation-delay: 7.5s;
+  -o-animation-delay: 7.5s;
+  -ms-animation-delay: 7.5s;
 }
 #home .about-img {
   border-radius: 100%;
-  border: 5px solid #99CC99;
+  border: 5px solid #99cc99;
   height: 170px;
   width: 165px;
   bottom: 40px;
   position: relative;
   -webkit-animation-delay: 7.5s;
-  -mos-animation-delay: 7.5s;
+  -moz-animation-delay: 7.5s;
+  -o-animation-delay: 7.5s;
+  -ms-animation-delay: 7.5s;
 }
 #home .subtitle {
   color: #263031;
@@ -485,7 +505,9 @@ nav .navigation li a {
   position: relative;
   letter-spacing: 0.8px;
   -webkit-animation-delay: 8.2s;
-  -mos-animation-delay: 8.2s;
+  -moz-animation-delay: 8.2s;
+  -o-animation-delay: 8.2s;
+  -ms-animation-delay: 8.2s;
 }
 #home .home-nav {
   position: relative;
@@ -494,7 +516,9 @@ nav .navigation li a {
 }
 #home .home-nav ul {
   -webkit-animation-delay: 8.2s;
-  -mos-animation-delay: 8.2s;
+  -moz-animation-delay: 8.2s;
+  -o-animation-delay: 8.2s;
+  -ms-animation-delay: 8.2s;
 }
 #home .home-nav ul li {
   margin-bottom: 15px;
@@ -508,9 +532,9 @@ nav .navigation li a {
   font-size: 10px;
 }
 .page-title {
-  font-size: 50px;
+  font-size: 35px;
   position: relative;
-  color: #51554f;
+  color: #263031;
   top: 15%;
 }
 #about .bio,
@@ -532,47 +556,63 @@ nav .navigation li a {
 #portfolio {
   overflow: scroll;
 }
+#portfolio .icon2x {
+  z-index: 100;
+  color: #99cc99;
+  position: relative;
+  top: 45%;
+  margin: 0 25px;
+}
+#portfolio .icon2x:hover {
+  color: #263031;
+}
 #portfolio .portfolio-sub {
   top: 25%;
   position: relative;
 }
-#portfolio .portfolio-table {
+#portfolio #portfolio-showcase {
   position: relative;
-  margin: 0 auto;
-  top: 35%;
+  top: 150px;
+  height: 500px;
 }
-#portfolio .portfolio-img {
-  -webkit-animation-delay: 2s;
-  -mos-animation-delay: 2s;
-  height: 250px;
-  width: 300px;
-  z-index: -1px;
+#portfolio #portfolio-showcase .portfolio-img {
+  height: 200px;
+  width: 200px;
 }
-#portfolio td:hover .portfolio-layer {
-  opacity: 1;
+#portfolio #portfolio-showcase #slideshow ul {
+  height: 320px;
+  left: 10px;
+  list-style: none outside none;
+  overflow: hidden;
+  position: absolute;
+  top: 10px;
+  width: 620px;
 }
-#portfolio .portfolio-layer {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  height: 250px;
-  left: 0;
-  bottom: 255px;
-  width: 300px;
-  opacity: 0;
-  padding: 100px 0;
+#portfolio #portfolio-showcase #slideshow li {
+  position: absolute;
+  display: none;
+  z-index: 10;
+  height: 200px;
+  width: 200px;
+}
+#portfolio #portfolio-showcase #slideshow li:first-child {
+  display: block;
+  z-index: 1000;
+}
+#portfolio #portfolio-showcase .slideActive {
+  z-index: -2;
+  height: 200px;
+  width: 200px;
 }
 #contact .contact-sub {
-  top: 25%;
+  top: 40%;
   position: relative;
 }
 #contact button {
   margin-top: 30px;
 }
 #contact #icons {
-  top: 33%;
+  top: 50%;
   position: relative;
 }
 #contact #icons i {
