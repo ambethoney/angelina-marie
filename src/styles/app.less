@@ -554,7 +554,7 @@ nav{
   height: 100%;
   width: 100%;
   left:0;
-  border: 1px solid black;
+
   background-color: #FFF;
   text-align: center;
 }
@@ -650,57 +650,38 @@ nav{
 
 #portfolio{
   overflow: scroll;
-  .icon2x{
-    z-index: 100;
-    color:@main;
-    position: relative;
-    top:45%;
-    margin: 0 25px;
+  .computer{
+    position: fixed;
+    z-index: 50;
+    left:5%;
+    top:20%;
   }
-  .icon2x:hover{
-    color:@dark;
-  }
-  .portfolio-sub{
-    top:25%;
-    position: relative;
-  }
-  #portfolio-showcase{
-    position: relative;
-    top:150px;
-    height: 500px;
-
-  .portfolio-img{
-    height: 200px;
-    width: 200px;
-  }
-
-    #slideshow ul{
-      height:320px;
-      left:10px;
-      list-style:none outside none;
-      overflow:hidden;
-      position:absolute;
-      top:10px;
-      width:620px;
+  .computer-icon{
+      height: 600px;
+      width: 600px;
     }
+  section{
+    display: block;
+    width: 100%;
+    height: 100%;
 
-    #slideshow li{
-      position:absolute;
-      display:none;
-      z-index:10;
-      height:200px;
-      width: 200px;
+    img{
+      display: block;
+      height: 400px;
+      width: 400px;
+      position: relative;
+      margin-left: 10%;
     }
+    .detail{
+      width: 50%;
 
-    #slideshow li:first-child{
-      display:block;
-      z-index:1000;
-    }
-
-    .slideActive{
-        z-index:-2;
-        height: 200px;
-        width: 200px;
+      .project-title{
+        font-size: 20px;
+      }
+      .project-content{
+        position: relative;
+        width: 400px;
+      }
     }
   }
 }

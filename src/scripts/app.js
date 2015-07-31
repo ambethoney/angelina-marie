@@ -1,5 +1,6 @@
 var m = require('mithril'),
-$ = require('jquery');
+$ = jQuery = require('jquery');
+require('../vendors/js/jquery.panelSnap.js');
 
 mysite = {};
 
@@ -82,73 +83,16 @@ mysite.anim.greeting = function(el, init, context){
 }
 
 
-mysite.anim.portfolio = function(el, init, context){
-    var canvas = document.getElementById("portfolio-showcase"),
-        ctx = canvas.getContext("2d");
+mysite.anim.rollSections = function(el, init, context){
 
-    if(ctx != null){
+    if(!init){
 
-        // desktop
-        ctx.beginPath();
-        ctx.rect(10, 10, 150, 105);
-        ctx.fillStyle = 'transparent';
-        ctx.fill();
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = 'black';
-        ctx.stroke();
-
-        // power button
-        ctx.beginPath();
-        ctx.arc(85,115,.5, 0 ,2*Math.PI);
-        ctx.strokeStyle = 'white';
-        ctx.stroke();
-
-        // base
-        ctx.beginPath();
-        ctx.rect(10, 200, 15, 15);
-        ctx.fillStyle = 'yellow';
-        ctx.fill();
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = 'yellow';
-        ctx.stroke();
-
-        //slideshow
-        $(function(){
-
-            var slides = $('#slideshow li img'),
-            slideWidth = window.width;
-            current = 0,
-            images = [];
-
-            $.each(slides, function( val, i ) {
-                var data = i,
-                    oImg = new Image();
-                    oImg.src = this.src;
-                    images.push(oImg);
-                    // console.log(oImg)
-                });
-
-                ctx.drawImage(images[current], 0, 0);
-
-                function moveLeft() {
-                    console.log(current);
-                    current++;
-                    console.log(current)
-                    if(current == $(images).length){
-                        current = 0;
-                    }
-                };
-
-                 $('.icon-chevron_left').click(function () {
-                    console.log(images[current])
-                    moveLeft();
-                });
-
-
-
-        })
+        $(el).panelSnap();
     }
 }
+
+
+
 
 
 
@@ -329,21 +273,21 @@ mysite.subModules.Portfolio ={
 
     view : function (ctrl){
          return[
-            m("div.container#portfolio",[
-                m("div.page-title", "Here's what I've been making"),
-                m('i',{class:'icon-chevron_left left icon2x arrow'}),
-                m('i',{class:'icon-chevron_right right icon2x arrow'}),
-                m("canvas#portfolio-showcase",{config:mysite.anim.portfolio},"my portfolio!",
-                    m("ul#slideshow",
+            m("div.container#portfolio",{config:mysite.anim.rollSections},[
+                m(".computer fixed", m("img",{src:'../img/mac.svg', class:'computer-icon'})),
+                m("section",
+                 m("div.page-title", "Here's what I've been building")
+                ),
 
-                        $.map(ctrl.projects(), function( val, i ) {
-                            return m("li",
-                                    m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img" })
-
-                            )
-                        })
+                $.map(ctrl.projects(), function( val, i ) {
+                    return m("section",
+                        m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img left" }),
+                        m(".detail right",
+                             m("h4", val.title),
+                            m("p", val.content)
+                        )
                     )
-                )
+                })
 
 
             ])
