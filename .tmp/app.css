@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -406,6 +407,9 @@ input {
   clear: both;
   height: 1px;
 }
+.center {
+  text-align: center;
+}
 .left {
   float: left;
 }
@@ -443,6 +447,7 @@ nav .navigation li {
 nav .navigation li a {
   color: #99cc99;
   padding-bottom: 5px;
+  font-family: 'Vollkorn', serif;
 }
 nav .navigation li a:hover {
   border-bottom: 3px solid gold;
@@ -450,8 +455,11 @@ nav .navigation li a:hover {
 nav .navigation li:last-child {
   margin-right: 100px;
 }
+.mobile-nav {
+  display: none;
+}
 .success {
-  color: gold;
+  border-bottom: 1px solid gold;
 }
 .page {
   height: 100%;
@@ -467,13 +475,14 @@ nav .navigation li:last-child {
   height: 100%;
   width: 100%;
   left: 0;
+  font-family: 'Vollkorn', serif;
   background-color: #FFF;
   text-align: center;
 }
 #home #hello {
   background-color: #FFF;
   position: relative;
-  top: 0px;
+  top: 20px;
 }
 #home .title {
   color: #263031;
@@ -533,7 +542,7 @@ nav .navigation li:last-child {
 .page-title {
   font-size: 35px;
   position: relative;
-  color: #263031;
+  color: #99cc99;
   top: 15%;
 }
 #about .bio,
@@ -541,7 +550,7 @@ nav .navigation li:last-child {
   color: #263031;
   top: 50px;
   position: relative;
-  margin: 10% 5%;
+  margin: 10% 15%;
   width: 300px;
   text-align: justify;
   line-height: 20px;
@@ -570,26 +579,59 @@ nav .navigation li:last-child {
   width: 100%;
   height: 100%;
 }
+#portfolio section #scroll {
+  top: 78%;
+  position: absolute;
+  left: 78%;
+}
+#portfolio section .icon-chevron_down {
+  -webkit-animation-delay: .5s;
+  -moz-animation-delay: .5s;
+  -o-animation-delay: .5s;
+  -ms-animation-delay: .5s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  top: 85%;
+  position: absolute;
+  left: 80%;
+}
 #portfolio section img {
   display: block;
   height: 400px;
   width: 400px;
   position: relative;
-  margin-left: 10%;
+  margin-left: 7%;
+  top: 30%;
 }
 #portfolio section .detail {
-  width: 50%;
+  width: 40%;
+  position: relative;
+  top: 30%;
+  height: 100%;
+  padding: 10px;
+  font-family: 'Vollkorn', serif;
 }
 #portfolio section .detail .project-title {
   font-size: 20px;
+  text-align: center;
+  position: relative;
 }
-#portfolio section .detail .project-content {
+#portfolio section .detail p {
   position: relative;
   width: 400px;
+  top: 25px;
+  left: 10%;
+  text-align: justify;
+}
+#portfolio section .detail p a {
+  color: #99cc99;
 }
 #contact .contact-sub {
   top: 40%;
   position: relative;
+  font-size: 20px;
 }
 #contact button {
   margin-top: 30px;
@@ -603,7 +645,7 @@ nav .navigation li:last-child {
   font-size: 30px;
 }
 #contact #icons i a {
-  color: lightseagreen;
+  color: #99cc99;
 }
 #contact #contact_form {
   position: relative;
@@ -619,6 +661,123 @@ nav .navigation li:last-child {
   }
 }
 @media screen and (max-width: 775px) {
+  nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
+  .mobile-nav .burger {
+    width: 60px;
+    height: 45px;
+    position: relative;
+    margin: 5%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+  }
+  .mobile-nav .burger span {
+    display: block;
+    position: absolute;
+    height: 9px;
+    width: 50%;
+    background: #d3531a;
+    opacity: 1;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+  }
+  .mobile-nav .burger span:nth-child(even) {
+    left: 50%;
+    border-radius: 0 9px 9px 0;
+  }
+  .mobile-nav .burger span:nth-child(odd) {
+    left: 0px;
+    border-radius: 9px 0 0 9px;
+  }
+  .mobile-nav .burger span:nth-child(1),
+  .mobile-nav .burger span:nth-child(2) {
+    top: 0px;
+  }
+  .mobile-nav .burger span:nth-child(3),
+  .mobile-nav .burger span:nth-child(4) {
+    top: 18px;
+  }
+  .mobile-nav .burger span:nth-child(5),
+  .mobile-nav .burger span:nth-child(6) {
+    top: 36px;
+  }
+  .mobile-nav .burger.open span:nth-child(1),
+  .mobile-nav .burger.open span:nth-child(6) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .mobile-nav .burger.open span:nth-child(2),
+  .mobile-nav .burger.open span:nth-child(5) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .mobile-nav .burger.open span:nth-child(1) {
+    left: 5px;
+    top: 7px;
+  }
+  .mobile-nav .burger.open span:nth-child(2) {
+    left: calc(45%);
+    top: 7px;
+  }
+  .mobile-nav .burger.open span:nth-child(3) {
+    left: -50%;
+    opacity: 0;
+  }
+  .mobile-nav .burger.open span:nth-child(4) {
+    left: 100%;
+    opacity: 0;
+  }
+  .mobile-nav .burger.open span:nth-child(5) {
+    left: 5px;
+    top: 29px;
+  }
+  .mobile-nav .burger.open span:nth-child(6) {
+    left: calc(45%);
+    top: 29px;
+  }
+  .mobile-nav .mobile-navigation {
+    display: none;
+    background-color: #99cc99;
+    padding: 5px 0px;
+  }
+  .mobile-nav .mobile-navigation li {
+    margin: 20px 0;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    left: 0;
+    top: 0;
+    text-align: center;
+  }
+  .mobile-nav .mobile-navigation li a {
+    color: #fff;
+    padding-bottom: 5px;
+    font-family: 'Vollkorn', serif;
+    border-bottom: 5px;
+  }
+  .mobile-nav .mobile-navigation li a:hover {
+    border-bottom: none;
+  }
   #about {
     overflow: scroll;
   }
@@ -637,6 +796,78 @@ nav .navigation li:last-child {
   #about .skills {
     top: 20%;
     margin-bottom: 20px;
+  }
+  #portfolio {
+    overflow: scroll;
+  }
+  #portfolio .computer {
+    position: fixed;
+    z-index: 50;
+    left: 5%;
+    top: 20%;
+  }
+  #portfolio .computer-icon {
+    height: 300px;
+    width: 300px;
+  }
+  #portfolio section {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  #portfolio section #scroll {
+    top: 78%;
+    position: absolute;
+    left: 78%;
+  }
+  #portfolio section .icon-chevron_down {
+    -webkit-animation-delay: .5s;
+    -moz-animation-delay: .5s;
+    -o-animation-delay: .5s;
+    -ms-animation-delay: .5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    bottom: 60%;
+    left: 50%;
+  }
+  #portfolio section img {
+    display: block;
+    height: 135px;
+    width: 270px;
+    position: relative;
+    margin-left: 8%;
+    top: 25%;
+  }
+  #portfolio section .detail {
+    float: none;
+    width: 100%;
+    position: relative;
+    top: 40%;
+    height: 100%;
+    padding: 5px;
+    font-family: 'Vollkorn', serif;
+  }
+  #portfolio section .detail .project-title {
+    font-size: 20px;
+    text-align: center;
+    float: none;
+    display: inline-block;
+  }
+  #portfolio section .detail .first {
+    position: relative;
+    top: 30%;
+  }
+  #portfolio section .detail p {
+    position: relative;
+    width: 400px;
+    top: 10px;
+    left: 5%;
+    text-align: justify;
+  }
+  #portfolio section .detail p a {
+    color: #99cc99;
   }
 }
 @media screen and (max-width: 550px) {

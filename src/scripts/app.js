@@ -49,6 +49,12 @@ mysite.anim.pageSlideIn = function(el, init, context) {
 }
 
 mysite.anim.greeting = function(el, init, context){
+    $(window).ready(function(){
+        // console.log($(window).innerWidth())
+        $('canvas').width($(window).innerWidth());
+        $('canvas').height($(window).innerHeight()/3.33);
+        // $('canvas').top($(window).innerHeight()/3.33);
+    })
 
     var canvas = document.getElementById("hello"),
         ctx = canvas.getContext("2d"),
@@ -171,19 +177,41 @@ mysite.modules.Nav = {
             var click = function(){ m.route(route); };
             return m("button"+(isCurrent ? ".success" : ""), {onclick: click}, name);
         }
-
     },
 
     view: function(ctrl){
         return [
-            m("nav",{config: mysite.utils.hideNav},[
+            m("nav",[
                 m("span.left",m("a[href='/']", {config: m.route, class: "nav-link"}, "angelina marie")),
                 m("ul.navigation",
                     m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
                     m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
                     m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
                 )
-            ])
+            ]),
+            m(".mobile-nav",
+                m(".burger",{onclick:function(e){
+                    $(this).toggleClass('open');
+                    if($(this).hasClass('open')){
+                        $('.mobile-navigation').slideDown('slow');
+                    }else{
+                        $('.mobile-navigation').slideUp('slow');
+                    }
+                }},
+                    m("span"),
+                    m("span"),
+                    m("span"),
+                    m("span"),
+                    m("span"),
+                    m("span")
+                ),
+                m("ul.mobile-navigation",
+                    m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
+                    m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
+                    m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
+                    m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
+                )
+            )
         ];
     }
 };
@@ -192,12 +220,13 @@ mysite.modules.Page = function(subModule){
     return {
         controller: function() {
             return {
+                navCtrl: new mysite.modules.Nav.controller,
                 subCtrl: new subModule.controller,
 
             }
         },
         view : function(ctrl){
-            return [ mysite.modules.Nav.view(), m(".page",[subModule.view(ctrl.subCtrl)] ) ];
+            return [ mysite.modules.Nav.view(ctrl.navCtrl), m(".page",[subModule.view(ctrl.subCtrl)] ) ];
         }
     }
 }
@@ -216,6 +245,11 @@ mysite.subModules.Home = {
                     "width":"1200px",
                     "height":"250px",
                     config:mysite.anim.greeting
+                    // function(){
+                    //     $(window).resize(function(){
+                    //         console.log('hi')
+                    //     })
+                    // }
                 }, "oh, hello!"),
                 m("div.title",{config:mysite.anim.rollIn}, "I'm Angelina"),
                 m("img[src='../img/about-img.jpg']",{class: "about-img",config:mysite.anim.rollIn}),
@@ -276,15 +310,21 @@ mysite.subModules.Portfolio ={
             m("div.container#portfolio",{config:mysite.anim.rollSections},[
                 m(".computer fixed", m("img",{src:'../img/mac.svg', class:'computer-icon'})),
                 m("section",
-                 m("div.page-title", "Here's what I've been building")
+                    m(".detail right",
+                        m(".project-title first", "Here's what I've been building")
+                    ),
+                    // m("p#scroll", "scroll down"),
+                    m('i',{class:'animated bounce infinate icon2x icon-chevron_down'})
                 ),
 
                 $.map(ctrl.projects(), function( val, i ) {
                     return m("section",
                         m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img left" }),
                         m(".detail right",
-                             m("h4", val.title),
-                            m("p", val.content)
+                             m(".project-title", val.title),
+                            m("p", val.content),
+                            m("p", m("a",{href:'http://www.' +val.link + '.com',target:'_blank' }, "View Site")),
+                            m("p.center", val.tags)
                         )
                     )
                 })
