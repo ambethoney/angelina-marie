@@ -59,12 +59,12 @@ mysite.anim.greeting = function(el, init, context){
     var canvas = document.getElementById("hello"),
         ctx = canvas.getContext("2d"),
         dashLen = 220, dashOffset = dashLen, speed = 5,
-        txt = "oh, hello!", x = canvas.width / 3.66, i = 0;
+        txt = "hey there!", x = canvas.width / 3.66, i = 0;
 
     if(ctx != null){
 
 
-        ctx.font = "140px cursive, TSCu_Comic, sans-serif";
+        ctx.font = "125px cursive, TSCu_Comic, sans-serif";
         ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
         ctx.strokeStyle = ctx.fillStyle = "#99CC99";
         ctx.textBaseline = "middle";
@@ -269,16 +269,36 @@ mysite.subModules.Home = {
 
 mysite.subModules.About ={
     controller: function (){
-         var me = this ;
+
+        var About = function(data) {
+           data: m.prop(data)
+        }
+
+        About.list = function() {
+            return m.request({
+                method: "GET",
+                url: "http://www.angelina-marie.com/cockpit/rest/api/collections/get/About?token=5e33744e5a42d77878db9c30"
+            });
+        }
+
+       this.about = About.list();
     },
     view: function (ctrl){
         return[
            m("div.container#about",[
-                m("div.page-title", "welcome! "),
-                m("div.left.bio", m.trust("<p>Hi, I'm Angelina. I've found myself in the Big Apple by way of Boston, Providence, and Charleston, SC. I take a lot of pride in building websites that <del> no one but me and my mom uses</del> promotes businesses, entertains, or lets me play with new technologies.</p>")),
 
-                m("div.right.skills", m.trust("<p>What, you want to know more? When I finally pull away from my computer, I love arts & crafts of all varieties, lounging on the beach, and asking people what their new favorite library is at tech meetups across NYC.</p>"))
-            ])
+                $.map(ctrl.about(), function( val, i ) {
+                    // console.log(val, i)
+                    return m("section",
+                        m("img",{src: "../img/girl_emoji.png", class:"bio-img left" }),
+                        m(".detail right",
+                            m("p", m.trust(val.Bio))
+
+                        )
+                    )
+                })
+
+           ])
         ]
     }
 };
@@ -287,8 +307,6 @@ mysite.subModules.Portfolio ={
 
 
     controller: function (){
-
-        var table = $('.table-portfolio');
 
         var Project = function(data) {
            data: m.prop(data)
@@ -322,8 +340,8 @@ mysite.subModules.Portfolio ={
                         m("img",{src: "http://www.angelina-marie.com/"+val.image[0].path.split(":").pop()+"", class:"portfolio-img left" }),
                         m(".detail right",
                              m(".project-title", val.title),
-                            m("p", val.content),
-                            m("p", m("a",{href:'http://www.' +val.link + '.com',target:'_blank' }, "View Site")),
+                            m("p", m.trust(val.content)),
+                            m("p", m("a",{href:'http://www.' +val.link,target:'_blank' }, "View Site")),
                             m("p.center", val.tags)
                         )
                     )

@@ -545,21 +545,19 @@ nav .navigation li:last-child {
   color: #99cc99;
   top: 15%;
 }
-#about .bio,
-#about .skills {
-  color: #263031;
-  top: 50px;
+#about section .bio-img {
+  width: 100px;
   position: relative;
-  margin: 10% 15%;
-  width: 300px;
-  text-align: justify;
-  line-height: 20px;
+  left: 30%;
+  top: 200px;
 }
-#about .bio {
-  margin-right: 0;
-}
-#about .skills {
-  margin-left: 0;
+#about section .detail {
+  width: 40%;
+  position: relative;
+  top: 150px;
+  height: 100%;
+  right: 15%;
+  font-family: 'Vollkorn', serif;
 }
 #portfolio {
   overflow: scroll;
@@ -599,8 +597,8 @@ nav .navigation li:last-child {
 }
 #portfolio section img {
   display: block;
-  height: 400px;
-  width: 400px;
+  height: 270px;
+  width: 545px;
   position: relative;
   margin-left: 7%;
   top: 30%;
