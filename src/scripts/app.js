@@ -28,7 +28,7 @@ mysite.anim.rollIn = function(el, init, context){
 }
 
 
-mysite.anim.pageSlideIn = function(el, init, context) {
+mysite.anim.pageSlideOut = function(el, init, context) {
 
     if (!init) {
 
@@ -36,16 +36,24 @@ mysite.anim.pageSlideIn = function(el, init, context) {
 
             e.preventDefault()
 
+            console.log('fadeout')
 
-                $('.page').v("fadeIn", { delay: 200, duration: 1000 }, {
+                $('.page').velocity("fadeOut",{
 
-                complete: function() {
-
-                    m.route(el.getAttribute('href'), true)
-
-                }
+                    complete: function() {
+                        m.route(el.getAttribute("href"))
+                    }
             })
         }
+    }
+}
+
+
+mysite.anim.pageSlideIn = function(el, init, context){
+     if (!init) {
+
+        $('.page').velocity("fadeIn")
+
     }
 }
 
@@ -101,7 +109,7 @@ mysite.anim.rollSections = function(el, init, context){
 
 mysite.anim.bezierCurve = function(el, init, context){
     if(!init){
-        $(el).velocity({translateY: "300px", translateX:"20px"},{loop:1.5, duration:900}).velocity({scale:3, translateY: "275px"});
+        $(el).velocity({translateY: "300px", translateX:"20px"},{loop:1.5, duration:200}).velocity({scale:3, translateY: "275px"});
     }
 }
 
@@ -111,14 +119,6 @@ mysite.anim.bezierCurve = function(el, init, context){
 
 
 
-
-
-
-mysite.utils.grid = function(el, init, context){
-    if(!init){
-        $(el).masonry()
-    }
-}
 mysite.utils.hideNav = function(el, init, context){
     if(!init){
         if(m.route() ==='/'){
@@ -189,11 +189,11 @@ mysite.modules.Nav = {
     view: function(ctrl){
         return [
             m("nav",[
-                m("span.left",m("a[href='/']", {config: m.route, class: "nav-link"}, "angelina marie")),
+                m("span.left",m("a[href='/']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "angelina marie")),
                 m("ul.navigation",
-                    m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
-                    m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
-                    m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
+                    m("li", m("a[href='/about']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "About")),
+                    m("li", m("a[href='/portfolio']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "Portfolio")),
+                    m("li", m("a[href='/contact']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "Contact"))
                 )
             ]),
             m(".mobile-nav",
@@ -213,10 +213,10 @@ mysite.modules.Nav = {
                     m("span")
                 ),
                 m("ul.mobile-navigation",
-                    m("li", m("a[href='/']", {config: m.route, class: "nav-link"}, "Home")),
-                    m("li", m("a[href='/about']", {config: m.route, class: "nav-link"}, "About")),
-                    m("li", m("a[href='/portfolio']", {config: m.route, class: "nav-link"}, "Portfolio")),
-                    m("li", m("a[href='/contact']", {config: m.route, class: "nav-link"}, "Contact"))
+                    m("li", m("a[href='/']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "Home")),
+                    m("li", m("a[href='/about']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "About")),
+                    m("li", m("a[href='/portfolio']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "Portfolio")),
+                    m("li", m("a[href='/contact']", {config: mysite.anim.pageSlideOut, class: "nav-link"}, "Contact"))
                 )
             )
         ];
@@ -233,7 +233,7 @@ mysite.modules.Page = function(subModule){
             }
         },
         view : function(ctrl){
-            return [ mysite.modules.Nav.view(ctrl.navCtrl), m(".page",[subModule.view(ctrl.subCtrl)] ) ];
+            return [ mysite.modules.Nav.view(ctrl.navCtrl), m(".page",{config:mysite.anim.pageSlideIn},[subModule.view(ctrl.subCtrl)] ) ];
         }
     }
 }
@@ -263,9 +263,9 @@ mysite.subModules.Home = {
                 m("div.subtitle", {config:mysite.anim.rollIn},"I like to build interesting, thoughtful interfaces for businesses, non-profits, and you."),
                 m("div.home-nav",
                     m("ul",{config:mysite.anim.rollIn},
-                        m("li", m("a[href='/about']", {config: m.route}, "Learn More", m('i',{class:'icon-arrow_right'}))),
-                        m("li", m("a[href='/portfolio']", {config: m.route}, "My Work", m('i',{class:'icon-arrow_right'}))),
-                        m("li", m("a[href='/contact']", {config: m.route}, "I'm Hireable!", m('i',{class:'icon-arrow_right'})))
+                        m("li", m("a[href='/about']", {config: mysite.anim.pageSlideOut}, "Learn More", m('i',{class:'icon-arrow_right'}))),
+                        m("li", m("a[href='/portfolio']", {config: mysite.anim.pageSlideOut}, "My Work", m('i',{class:'icon-arrow_right'}))),
+                        m("li", m("a[href='/contact']", {config: mysite.anim.pageSlideOut}, "I'm Hireable!", m('i',{class:'icon-arrow_right'})))
                     )
                 )
             ])
