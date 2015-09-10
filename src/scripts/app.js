@@ -1,6 +1,7 @@
 var m = require('mithril'),
 $ = jQuery = require('jquery');
 require('../vendors/js/jquery.panelSnap.js');
+var velocity = require('../../node_modules/velocity-animate');
 
 mysite = {};
 
@@ -97,6 +98,12 @@ mysite.anim.rollSections = function(el, init, context){
     }
 }
 
+
+mysite.anim.bezierCurve = function(el, init, context){
+    if(!init){
+        $(el).velocity({translateY: "300px", translateX:"20px"},{loop:1.5, duration:900}).velocity({scale:3, translateY: "275px"});
+    }
+}
 
 
 
@@ -290,11 +297,10 @@ mysite.subModules.About ={
                 $.map(ctrl.about(), function( val, i ) {
                     // console.log(val, i)
                     return m("section",
-                        m("img",{src: "../img/girl_emoji.png", class:"bio-img left" }),
-                        m(".detail right",
-                            m("p", m.trust(val.Bio))
+                        m(".detail",{config:mysite.anim.bezierCurve}
 
-                        )
+                        ),
+                        m("p",{config: mysite.anim.rollIn}, m.trust(val.Bio))
                     )
                 })
 
