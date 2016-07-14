@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+@import url(http://fonts.googleapis.com/css?family=Satisfy);
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -12,12 +12,17 @@ html {
   /* 2 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
 /**
  * Remove default margin.
  */
 body {
   margin: 0;
+  width: 100%;
+  height: 100%;
 }
 /* HTML5 display definitions
    ========================================================================== */
@@ -243,7 +248,7 @@ input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
-  cursor: pointer;
+  ior: pointer;
   /* 3 */
 }
 /**
@@ -366,12 +371,15 @@ html {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
-body {
-  overflow: hidden;
-}
 a {
   text-decoration: none;
   z-index: 9999;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 ul li {
   list-style-type: none;
@@ -384,24 +392,7 @@ button {
 }
 button:hover {
   background-color: #99cc99;
-  color: #FFFF00;
-}
-form[name=contact] {
-  margin: 0 auto;
-  width: 500px;
-}
-input {
-  height: 25px;
-  padding: 5px;
-  border-radius: 5px;
-}
-.input_one {
-  width: 46%;
-  float: left;
-  margin: 0px 10px 10px;
-}
-.input_two {
-  width: 96%;
+  color: #FFF;
 }
 .clearfix {
   clear: both;
@@ -426,16 +417,17 @@ nav {
   right: 0;
   font-family: sans-serif;
   text-align: right;
+  background: #99cc99;
 }
 nav span {
   top: 15px;
   position: relative;
   margin-left: 45px;
-  font-family: cursive;
   font-size: 25px;
+  font-family: 'Satisfy', cursive;
 }
 nav span a {
-  color: #99cc99;
+  color: #fff;
 }
 nav .navigation {
   display: inline-block;
@@ -445,9 +437,10 @@ nav .navigation li {
   display: inline-block;
 }
 nav .navigation li a {
-  color: #99cc99;
+  color: #fff;
   padding-bottom: 5px;
-  font-family: 'Vollkorn', serif;
+  font-family: monospace;
+  font-size: 20px;
 }
 nav .navigation li a:hover {
   border-bottom: 3px solid gold;
@@ -461,46 +454,34 @@ nav .navigation li:last-child {
 .success {
   border-bottom: 1px solid gold;
 }
-.page {
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  z-index: -2;
-}
 .container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  font-family: 'Vollkorn', serif;
-  background-color: #FFF;
+  font-family: monospace;
   text-align: center;
 }
-#home #hello {
-  background-color: #FFF;
-  position: relative;
-  top: 20px;
+#home {
+  margin-top: 70px;
+}
+#home .bg {
+  background: #99cc99;
+  height: 295px;
+  margin-bottom: 115px;
+  padding-top: 75px;
 }
 #home .title {
-  color: #263031;
+  color: #fff;
   font-size: 40px;
   position: relative;
-  bottom: 10%;
-  color: black;
-  -webkit-animation-delay: 7.5s;
-  -moz-animation-delay: 7.5s;
-  -o-animation-delay: 7.5s;
-  -ms-animation-delay: 7.5s;
+  -webkit-animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  -o-animation-delay: .2s;
+  -ms-animation-delay: .2s;
 }
 #home .about-img {
   border-radius: 100%;
   border: 5px solid #99cc99;
-  height: 170px;
-  width: 165px;
-  bottom: 40px;
+  height: 270px;
+  width: 265px;
+  margin: 35px 0;
   position: relative;
   -webkit-animation-delay: 7.5s;
   -moz-animation-delay: 7.5s;
@@ -509,9 +490,10 @@ nav .navigation li:last-child {
 }
 #home .subtitle {
   color: #263031;
-  font-size: 20px;
+  font-size: 18px;
   position: relative;
   letter-spacing: 0.8px;
+  top: 50px;
   -webkit-animation-delay: 8.2s;
   -moz-animation-delay: 8.2s;
   -o-animation-delay: 8.2s;
@@ -519,14 +501,14 @@ nav .navigation li:last-child {
 }
 #home .home-nav {
   position: relative;
-  top: 5%;
-  font-size: 18px;
+  top: 75px;
+  font-size: 16px;
 }
 #home .home-nav ul {
-  -webkit-animation-delay: 8.2s;
-  -moz-animation-delay: 8.2s;
-  -o-animation-delay: 8.2s;
-  -ms-animation-delay: 8.2s;
+  -webkit-animation-delay: .3s;
+  -moz-animation-delay: .3s;
+  -o-animation-delay: .3s;
+  -ms-animation-delay: .3s;
 }
 #home .home-nav ul li {
   margin-bottom: 15px;
@@ -545,128 +527,73 @@ nav .navigation li:last-child {
   color: #99cc99;
   top: 15%;
 }
-#about section {
-  display: block;
-  width: 100%;
-  height: 100%;
+#about {
+  margin-top: 100px;
 }
-#about section .bio-img {
-  width: 100px;
-  position: relative;
-  left: 30%;
-  top: 200px;
-}
-#about section .detail {
-  width: 20%;
+#about .detail {
   padding: 15px;
-  border-radius: 100%;
-  background-color: #99cc99;
   position: relative;
   text-align: justify;
-  top: 0;
-  height: 30%;
   margin: 0 auto;
-  font-family: 'Vollkorn', serif;
+  top: 25px;
+  max-width: 725px;
 }
-#about section p {
-  width: 40%;
+#about p {
   margin: 0 auto;
   position: relative;
-  color: #fff;
-  -webkit-animation-delay: .5s;
-  -moz-animation-delay: .5s;
-  -o-animation-delay: .5s;
-  -ms-animation-delay: .5s;
+  color: #263031;
+  line-height: 1.4;
+  letter-spacing: .3px;
+  font-size: 15px;
+  font-family: monospace;
+  -webkit-animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  -o-animation-delay: .2s;
+  -ms-animation-delay: .2s;
 }
 #portfolio {
-  overflow: scroll;
+  padding-top: 100px;
+  text-align: center;
 }
-#portfolio .computer {
-  position: fixed;
-  z-index: 50;
-  left: 5%;
-  top: 20%;
+#portfolio .img-border {
+  height: 300px;
+  width: 300px;
+  border-radius: 100%;
+  border: 5px solid;
+  overflow: hidden;
+  display: inline-block;
+  margin: 30px;
 }
-#portfolio .computer-icon {
-  height: 600px;
-  width: 600px;
-}
-#portfolio section {
-  display: block;
-  width: 100%;
+#portfolio .img-border img {
   height: 100%;
+  width: 100%;
 }
-#portfolio section #scroll {
-  top: 78%;
-  position: absolute;
-  left: 78%;
-}
-#portfolio section .icon-chevron_down {
-  -webkit-animation-delay: .5s;
-  -moz-animation-delay: .5s;
-  -o-animation-delay: .5s;
-  -ms-animation-delay: .5s;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-iteration-count: infinite;
-  -o-animation-iteration-count: infinite;
-  -ms-animation-iteration-count: infinite;
-  top: 85%;
-  position: absolute;
-  left: 80%;
-}
-#portfolio section img {
-  display: block;
-  height: 270px;
-  width: 545px;
+#portfolio .detail {
   position: relative;
-  margin-left: 7%;
-  top: 30%;
-}
-#portfolio section .detail {
-  width: 40%;
-  position: relative;
-  top: 30%;
   height: 100%;
   padding: 10px;
-  font-family: 'Vollkorn', serif;
 }
-#portfolio section .detail .project-title {
-  font-size: 20px;
+#portfolio .detail .project-title {
+  font-size: 35px;
+  margin: 40px 0;
   text-align: center;
   position: relative;
 }
-#portfolio section .detail p {
-  position: relative;
-  width: 400px;
-  top: 25px;
-  left: 10%;
+#portfolio .detail p {
   text-align: justify;
 }
-#portfolio section .detail p a {
+#portfolio .detail p a {
   color: #99cc99;
 }
-#contact .contact-sub {
-  top: 40%;
-  position: relative;
-  font-size: 20px;
+#icons {
+  margin: 45px 0;
 }
-#contact button {
-  margin-top: 30px;
-}
-#contact #icons {
-  top: 50%;
-  position: relative;
-}
-#contact #icons i {
+#icons i {
   margin: 0 25px;
   font-size: 30px;
 }
-#contact #icons i a {
+#icons i a {
   color: #99cc99;
-}
-#contact #contact_form {
-  position: relative;
-  top: 40%;
 }
 @media screen and (max-width: 1050px) {
   #about .about-img {
@@ -676,19 +603,43 @@ nav .navigation li:last-child {
   #about .bio {
     width: 240px;
   }
+  #portfolio .img-border {
+    height: 200px;
+    width: 200px;
+  }
 }
 @media screen and (max-width: 775px) {
+  .right,
+  .left {
+    float: none;
+  }
   nav {
     display: none;
   }
   .mobile-nav {
     display: block;
+    position: fixed;
+    width: 100%;
+    background: #99cc99;
+    z-index: 9999;
+    height: 72px;
+  }
+  .mobile-nav span {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    font-size: 20px;
+  }
+  .mobile-nav span a {
+    font-family: 'Satisfy', cursive;
+    color: #fff;
   }
   .mobile-nav .burger {
     width: 60px;
     height: 45px;
     position: relative;
-    margin: 5%;
+    left: 85%;
+    top: -12px;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -697,13 +648,12 @@ nav .navigation li:last-child {
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
-    cursor: pointer;
   }
   .mobile-nav .burger span {
     display: block;
     position: absolute;
-    height: 9px;
-    width: 50%;
+    height: 6px;
+    width: 25%;
     background: #d3531a;
     opacity: 1;
     -webkit-transform: rotate(0deg);
@@ -716,7 +666,7 @@ nav .navigation li:last-child {
     transition: 0.25s ease-in-out;
   }
   .mobile-nav .burger span:nth-child(even) {
-    left: 50%;
+    left: 25%;
     border-radius: 0 9px 9px 0;
   }
   .mobile-nav .burger span:nth-child(odd) {
@@ -729,11 +679,11 @@ nav .navigation li:last-child {
   }
   .mobile-nav .burger span:nth-child(3),
   .mobile-nav .burger span:nth-child(4) {
-    top: 18px;
+    top: 12px;
   }
   .mobile-nav .burger span:nth-child(5),
   .mobile-nav .burger span:nth-child(6) {
-    top: 36px;
+    top: 24px;
   }
   .mobile-nav .burger.open span:nth-child(1),
   .mobile-nav .burger.open span:nth-child(6) {
@@ -754,7 +704,7 @@ nav .navigation li:last-child {
     top: 7px;
   }
   .mobile-nav .burger.open span:nth-child(2) {
-    left: calc(45%);
+    left: calc(25%);
     top: 7px;
   }
   .mobile-nav .burger.open span:nth-child(3) {
@@ -767,16 +717,19 @@ nav .navigation li:last-child {
   }
   .mobile-nav .burger.open span:nth-child(5) {
     left: 5px;
-    top: 29px;
+    top: 20px;
   }
   .mobile-nav .burger.open span:nth-child(6) {
-    left: calc(45%);
-    top: 29px;
+    left: calc(25%);
+    top: 20px;
   }
   .mobile-nav .mobile-navigation {
     display: none;
     background-color: #99cc99;
     padding: 5px 0px;
+    top: 40px;
+    position: absolute;
+    width: 100%;
   }
   .mobile-nav .mobile-navigation li {
     margin: 20px 0;
@@ -795,8 +748,33 @@ nav .navigation li:last-child {
   .mobile-nav .mobile-navigation li a:hover {
     border-bottom: none;
   }
+  #home {
+    padding-top: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  #home .bg {
+    z-index: -2;
+  }
+  #home .title {
+    font-size: 30px;
+  }
+  #home .subtitle {
+    font-size: 16px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  #home .home-nav ul {
+    padding: 0;
+  }
   #about {
+    padding-top: 50px;
     overflow: scroll;
+  }
+  #about section .detail {
+    top: 0;
+    width: 95%;
   }
   #about .skills,
   #about .bio {
@@ -812,83 +790,21 @@ nav .navigation li:last-child {
     margin-bottom: 20px;
   }
   #portfolio {
-    overflow: scroll;
+    padding-top: 50px;
   }
-  #portfolio .computer {
-    position: fixed;
-    z-index: 50;
-    left: 5%;
-    top: 20%;
-  }
-  #portfolio .computer-icon {
-    height: 300px;
-    width: 300px;
-  }
-  #portfolio section {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  #portfolio section #scroll {
-    top: 78%;
-    position: absolute;
-    left: 78%;
-  }
-  #portfolio section .icon-chevron_down {
-    -webkit-animation-delay: .5s;
-    -moz-animation-delay: .5s;
-    -o-animation-delay: .5s;
-    -ms-animation-delay: .5s;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    -ms-animation-iteration-count: infinite;
-    bottom: 60%;
-    left: 50%;
-  }
-  #portfolio section img {
-    display: block;
-    height: 135px;
-    width: 270px;
-    position: relative;
-    margin-left: 8%;
-    top: 25%;
-  }
-  #portfolio section .detail {
+  #portfolio .detail {
     float: none;
     width: 100%;
     position: relative;
-    top: 40%;
-    height: 100%;
-    padding: 5px;
-    font-family: 'Vollkorn', serif;
   }
-  #portfolio section .detail .project-title {
-    font-size: 20px;
+  #portfolio .project-title {
+    font-size: 25px;
     text-align: center;
     float: none;
     display: inline-block;
   }
-  #portfolio section .detail .first {
-    position: relative;
-    top: 30%;
-  }
-  #portfolio section .detail p {
-    position: relative;
-    width: 400px;
-    top: 10px;
-    left: 5%;
-    text-align: justify;
-  }
-  #portfolio section .detail p a {
-    color: #99cc99;
-  }
-}
-@media screen and (max-width: 550px) {
-  #about {
-    overflow: scroll;
-  }
-  #about .about-img {
-    width: 45%;
+  #portfolio .img-border {
+    display: block;
+    margin: 20px auto;
   }
 }
